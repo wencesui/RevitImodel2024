@@ -41,6 +41,7 @@
 //Updated for Revit 2024
 
 //WS: 2025-11-25 Add try/catch in external command.
+//WS: 2026-10-16 Pushed into repository in GitHub
 
 using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.DB;
