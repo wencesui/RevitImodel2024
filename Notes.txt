@@ -1,0 +1,53 @@
+Background:
+
+1. The last version of Bentley Revit Plugin is for Revit 2020. But it can be used for Revit 2021. 
+
+(Note: the machine I have Revit 2020 installed is HBJV0000860.hbjv.local with my own account to login).
+
+To deploy Plugin for Revit 2020 to Revit 2021:
+
+1.1 Step 1: copy folder "imEW for Revit" from a machine with Revit 2020 plugin, to "C:\Program Files\Bentley" of the machine with Revit 2021. 
+1.2 Step 2: copy RevitExportDWG.addin from C:\ProgramData\Autodesk\Revit\Addins\2020 to C:\ProgramData\Autodesk\Revit\Addins\2021. Note: this addin file is calling "C:\Program Files\Bentley\imEW for Revit\Revit.ExportDWG2020.dll"
+
+Note: no writing in machine's registry.
+
+2. Since Revit 2022 API changed, i.e. "DisplayUnitType" enum are replaced by "UnitTypeId"'s member, the Revit.ExportDWG2020.dll can't be used anymore.
+
+3. Accordingly, my own addin "PublishImodel.dll" can't be used, and I must update it based on Revit 2022 API.
+
+======================================
+
+Learning Bentley's Revit Plugin 
+
+1. Basic workflow
+
+Step 1. Export Revit view graphics to dwg by using Revit API.
+
+Step 2. Scan Revit model to get all elements.
+
+Step 3. Export DWG to an xml file.
+
+Step 4. Export EC data from all these elements to an XML file by using "Bentley.IMPR.DWG2XML.dll".
+
+Step 5. Export DWG to an xml file by using "Bentley.IMPR.XML2DGN.dll" (it's starting a process of "Bentley.IMPR.DWG2DGN.exe")
+
+
+
+Note: 
+
+1. How to start a thread?
+
+
+
+Revit ==> dwg ==> xml (using Bentley.IMPR.DWG2XML.dll) ==>Dgn (using Bentley.IMPR.XML2DGN.dll, actually it starts a process of Bentley.IMPR.DWG2DGN.exe) ==> write ecxml into dgn.
+
+      ==> ecxml
+
+Bentley.IMPR.DWG2DGN.exe can be used to convert dwg to dgn in batch file?
+
+==Update Notes:
+1. Replace old "DisplayUnitType" enum by using "UnitTypeId"'s member
+2. Replace old "ParameterType" enum by using SpecTypeId, or SpecTypeId.String, or SpecTypeId.Boolean or or SpecTypeId.Int or SpecTypeId.Reference members
+
+==arguments for starting process of "Bentley.IMPR.DWG2DGN.exe"
+/S "C:\Users\sui55523\AppData\Local\Temp\5a492792-807f-4f56-9df2-898653622b76\bhyyvt31.uwx\1pza3sjn.dwg" "S:\Wence\H375000-212900-290-20M-0001.rvt" "S:\Wence\New folder\H375000-212900-290-20M-0001_ThreeD_For Export.i.dgn"

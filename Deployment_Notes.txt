@@ -1,0 +1,12 @@
+Prerequisites:
+1. Install Revit 2022.
+=====================================
+Install "Publish iModel" Addin for Revit 2022
+
+1. Copy the whole folder "imEW for Revit" to "C:\Program Files\Bentley" of the machine with Revit 2022.
+2. Copy "PublishImodel.addin" into C:\Users\<user account>\AppData\Roaming\Autodesk\Revit\Addins\2022
+
+Notes: 
+
+1. This needs your local machine admin right, so you need to log a ticket to let IT help you out.
+2. After deployment, the first time start up Revit 2022, there'll be a "Security - Unsigned Add-in" popping up. Click "Always Load" to allow custom addin to load. 
